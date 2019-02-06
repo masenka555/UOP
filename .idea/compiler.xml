@@ -2,8 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="UOP.main" target="1.8" />
-      <module name="UOP.test" target="1.8" />
+      <module name="UOP_main" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
