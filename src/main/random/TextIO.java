@@ -1,3 +1,5 @@
+package random;
+
 import java.io.*;
 import java.util.IllegalFormatException;
 import java.util.regex.Matcher;
@@ -7,13 +9,13 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
     /**
-     * RandomMath.TextIO provides a set of static methods for reading and writing text.  By default, it reads
+     * RandomMath.random.TextIO provides a set of static methods for reading and writing text.  By default, it reads
      * from standard input and writes to standard output, but it is possible to redirect the input
      * and output to files or to other input and output streams.  When the standard input and output
      * streams are being used, the input methods will not produce an error; instead, the user is
      * repeatedly prompted for input until a legal input is entered.  (If standard input has been
      * changed externally, as by file redirection on the command line, this is not a reasonable
-     * behavior; to handle this case, RandomMath.TextIO will give up after 10 consecutive illegal inputs and
+     * behavior; to handle this case, RandomMath.random.TextIO will give up after 10 consecutive illegal inputs and
      * will throw an IllegalArgumentException.)  For the most part, any other
      * error will be translated into an IllegalArguementException.
      * <p>For writing to standard output, the output methods in this class pretty much
@@ -24,14 +26,14 @@ import javax.swing.JOptionPane;
      * static methods, and none of the methods throw exceptions that would require try...catch statements.
      * Also for this reason, all exceptions are converted into IllegalArgumentExceptions, even when this
      * exception type doesn't really make sense.
-     * <p>This class requires Java 5.0 or higher. (A previous version of RandomMath.TextIO required only Java 1.1;
+     * <p>This class requires Java 5.0 or higher. (A previous version of RandomMath.random.TextIO required only Java 1.1;
      * this version should work with any source code that used the previous version, but it has some new
      * features, including the type of formatted output that was introduced in Java 5 and the ability to
      * use files and streams.)
      */
     public class TextIO {
 
-        /* Modified November 2007 to empty the RandomMath.TextIO input buffer when switching from one
+        /* Modified November 2007 to empty the RandomMath.random.TextIO input buffer when switching from one
          * input source to another. This fixes a bug that allows input from the previous input
          * source to be read after the new source has been selected.
          */
@@ -332,7 +334,7 @@ import javax.swing.JOptionPane;
 
 
         /**
-         * If RandomMath.TextIO is currently reading from a file, then the return value is the name of the file.
+         * If RandomMath.random.TextIO is currently reading from a file, then the return value is the name of the file.
          * If the class is reading from standard input or from a stream, then the return value is null.
          */
         public static String getInputFileName() {
@@ -341,7 +343,7 @@ import javax.swing.JOptionPane;
 
 
         /**
-         * If RandomMath.TextIO is currently writing to a file, then the return value is the name of the file.
+         * If RandomMath.random.TextIO is currently writing to a file, then the return value is the name of the file.
          * If the class is writing to standard output or to a stream, then the return value is null.
          */
         public static String getOutputFileName() {
@@ -426,12 +428,12 @@ import javax.swing.JOptionPane;
          */
         public static void putf(String format, Object... items) {
             if (format == null)
-                throw new IllegalArgumentException("Null format string in RandomMath.TextIO.putf() method.");
+                throw new IllegalArgumentException("Null format string in RandomMath.random.TextIO.putf() method.");
             try {
                 out.printf(format,items);
             }
             catch (IllegalFormatException e) {
-                throw new IllegalArgumentException("Illegal format string in RandomMath.TextIO.putf() method.");
+                throw new IllegalArgumentException("Illegal format string in RandomMath.random.TextIO.putf() method.");
             }
             out.flush();
             if (out.checkError())
@@ -473,7 +475,7 @@ import javax.swing.JOptionPane;
         /**
          * Returns the next character in the current input source, without actually removing that
          * character from the input.  The character can be a whitespace character and can be the
-         * end-of-file character (specfied by the constant RandomMath.TextIO.EOF).An end-of-line is always returned
+         * end-of-file character (specfied by the constant RandomMath.random.TextIO.EOF).An end-of-line is always returned
          * as the character '\n', even when the actual end-of-line in the input source is something else,
          * such as '\r' or "\r\n".  This method never causes an error.
          */
@@ -987,7 +989,7 @@ import javax.swing.JOptionPane;
 
         private static void outputError(String message) {  // Report an error on output.
             if (writingStandardOutput) {
-                System.err.println("Error occurred in RandomMath.TextIO while writing to standard output!!");
+                System.err.println("Error occurred in RandomMath.random.TextIO while writing to standard output!!");
                 outputErrorCount++;
                 if (outputErrorCount >= 10) {
                     outputErrorCount = 0;
@@ -1003,4 +1005,4 @@ import javax.swing.JOptionPane;
             }
         }
 
-    } // end of class RandomMath.TextIO
+    } // end of class RandomMath.random.TextIO
