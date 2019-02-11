@@ -3,13 +3,13 @@ package recursive;
 public class MyRecursive {
     public static void main( String arg[] ) {
         RandomSentence random = new RandomSentence();
-        random.makeSentence();
+        random.generateSentence();
     }
 
 
     /**
-     * this class will help generate a random sentence.
-     * Call makeSentence() to generate a random sentence.
+     * Generating a random sentence
+     *
      */
     private static class RandomSentence {
         String[] conjunction = { "and", "or", "but", "because" };
@@ -21,38 +21,32 @@ public class MyRecursive {
         String[] transitive_verb = { "loves", "hates", "sees", "knows", "looks for", "finds" };
 
         /**
-         * Makes a simple sentence.
-         * has a 25% chance of adding conjunction and generating another sentence.
+         * Generating a simple sentence
          */
-        public void makeSentence() {
+        public void generateSentence() {
 
-            makeSimpleSentence();
+            generateSimpleSentence();
 
             if ( Math.random() > .75 ) {
                 System.out.print( "\b, " );
                 getRandomItem( conjunction );
-                makeSentence();
+                generateSentence();
             }
             System.out.print( "\b. " );
         }
 
         /**
-         * generates a sentence using a noun and verb phrase
+         * Generating a sentence using a noun and verb phrase
          */
-        private void makeSimpleSentence() {
-            makeNounPhrase();
-            makeVerbPhrase();
+        private void generateSimpleSentence() {
+            generateNounPhrase();
+            generateVerbPhrase();
         }
 
         /**
-         * creates a noun phrase
-         * <proper_noun> | <determiner> [ <adjective> ]. <common_noun> [ who <verb_phrase> ]
-         * 74% chance to generate a proper noun
-         * 26% chance in generating <determiner> [ <adjective> ]. <common_noun> [ who <verb_phrase> ]
-         * 		24% chance to add an adjective
-         * 		49% chance to add a verb phrase
+         * Generating a noun phrase
          */
-        private void makeNounPhrase() {
+        private void generateNounPhrase() {
             if ( Math.random() > .25 ) {
                 getRandomItem( proper_noun );
             } else {
@@ -63,35 +57,31 @@ public class MyRecursive {
                 getRandomItem( common_noun );
                 if(Math.random() > .50) {
                     System.out.print( "who " );
-                    makeVerbPhrase();
+                    generateVerbPhrase();
                 }
             }
         }
 
         /**
-         * roughly 25% chance to do one of the following sets
-         * <intransitive_verb> |
-         * <transitive_verb> <noun_phrase> |
-         * is <adjective> |
-         * believes that <simple_sentence>
+         * Generating a random sentence
          */
-        private void makeVerbPhrase() {
+        private void generateVerbPhrase() {
             if(Math.random() < .25){
                 getRandomItem( intransitive_verb );
             } else if(Math.random() >= .25 && Math.random() < .50){
                 getRandomItem( transitive_verb );
-                makeNounPhrase();
+                generateNounPhrase();
             } else if(Math.random() >= .50 && Math.random() < .75){
                 System.out.print("is ");
                 getRandomItem( adjective );
             } else {
                 System.out.print( "believes that " );
-                makeSimpleSentence();
+                generateSimpleSentence();
             }
         }
 
         /**
-         * prints the array value at a random index.
+         * Printing an array value at a random index
          * @param array String[]
          */
         private void getRandomItem( String[] array ) {
