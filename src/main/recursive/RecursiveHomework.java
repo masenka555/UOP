@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class RecursiveSyntax {
+public class RecursiveHomework {
     static final String[] conjunction = { "and", "or", "but", "because" };
     static final String[] proper_noun = { "Fred", "Jane", "Richard Nixon", "Miss America" };
     static final String[] common_noun = { "man", "woman", "fish", "elephant", "unicorn" };
@@ -13,6 +13,9 @@ public class RecursiveSyntax {
     static final String[] intransitive_verb = { "runs", "jumps", "talks", "sleeps" };
     static final String[] transitive_verb = { "loves", "hates", "sees", "knows", "looks for", "finds" };
 
+    /**
+     * Generating strings that follow the syntax rules
+     */
     public static void main( String[] args ) {
 
         List<String[]> arrayList = new ArrayList<>();
@@ -27,12 +30,12 @@ public class RecursiveSyntax {
 
         for ( String[] currentArray : arrayList ) {
             String chosenString = currentArray[ random.nextInt( currentArray.length ) ];
-            System.out.println( chosenString );
+            System.out.print( chosenString );
         }
 
         while ( true ) {
             randomSentence();
-            System.out.println( ".\n\n" );
+            System.out.print( ".\n\n" );
             try {
                 Thread.sleep( 3000 );
             } catch ( InterruptedException e ) {
@@ -41,17 +44,62 @@ public class RecursiveSyntax {
         }
     }
 
+    /**
+     * Choosing a random item
+     */
+    static String randomItem(String [] listOfStrings){
+        return listOfStrings[(int)(Math.random()*listOfStrings.length)];
+    }
+
+    /**
+     * generating a random sentence
+     */
     static void randomSentence() {
-        System.out.print( "this is " );
+        System.out.print( " Once upon a time" );
         if ( Math.random() > 0.2 )
             randomNounPhrase();
-        System.out.print( "the house that Jack built" );
+        System.out.print( " told me" );
         if ( Math.random() > 0.75 ) {
-            System.out.print( " and " );
+            System.out.print( " and " +randomItem(conjunction));
             randomSentence();
         }
     }
 
+    /**
+     * Generating a random noun phrase
+     */
     static void randomNounPhrase() {
+        if(Math.random()>0.75)
+            System.out.print(" " +randomItem(proper_noun));
+        else {
+            System.out.print(" " +randomItem(determiner));
+            if(Math.random()>0.5)
+            System.out.print(" " +randomItem(common_noun));
+            System.out.print(" " +randomItem(adjective)+".");
+
+            if(Math.random()>0.5){
+                System.out.println(" why ");
+                randomVerbPhrase();
+            }
+        }
+    }
+
+    /**
+     * Generating a random verb phrase
+     */
+    static void randomVerbPhrase() {
+        if(Math.random()>0.75)
+            System.out.print(" " +randomItem(intransitive_verb));
+        else if (Math.random()>0.5) {
+            System.out.print(" " +randomItem(transitive_verb));
+            randomNounPhrase();
+        }
+        else if (Math.random()>0.25)
+            System.out.print(" is "+randomItem(adjective));
+        else {
+            System.out.print(" like it ");
+            randomNounPhrase();
+            randomVerbPhrase();
+        }
     }
 }
