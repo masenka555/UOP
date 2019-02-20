@@ -55,7 +55,7 @@ public class RecursiveHomework {
      * generating a random sentence
      */
     static void randomSentence() {
-        System.out.print( " Once upon a time" );
+        System.out.print( " Suddenly" );
         if ( Math.random() > 0.2 )
             randomNounPhrase();
         System.out.print( " told me" );
