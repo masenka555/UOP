@@ -4,78 +4,67 @@ public class Tape {
     public static void main(String[] args){
     }
 
-    private Cell currentCell;
+    //  Points to current cell
+    public Cell currentCell;
 
+    //  Constructor for creating a blank tape with a single cell
     public Tape(){
-        // Blank tape with 1 blank cell :
-        currentCell = createCell();
+        Cell newCell = new Cell();
+        newCell.content = ' ';
+        newCell.prev = null;
+        newCell.next = null;
+        currentCell = newCell;
     }
 
-    private Cell createCell(){
-        // Creates new cell :
-        Cell blankCell = new Cell();
-        blankCell.content = ' ';
-        blankCell.prev = null;
-        blankCell.next = null;
-
-        return blankCell;
-    }
-
-    public void setContent(char pContent){
-        currentCell.content = pContent;
-    }
-
-    public Cell getCurrentCell(){
-        return currentCell;
-    }
-
-    public char getContent(){
+    //  Getter for content for current cell
+    public char getContent() {
         return currentCell.content;
     }
 
-    public String getTapeContents(){
-        // Returns all characters from all cells on the tape :
-        String tapeContent = "";
-        Cell index = currentCell;
-
-        // Step 1: rewind :
-        while(index.prev != null)
-            index = index.prev;
-
-        // Step 2: record :
-        while(index != null){
-            tapeContent += index.content;
-            index = index.next;
-        }
-
-        //Step 3: return clean tape :
-        return tapeContent.trim();
+    //  Setter for characters in current cell
+    public void setContent(char character){
+        currentCell.content = character;
     }
 
-    public void moveLeft(){
-        // Moves cell location 1 cell left of current along tape :
-        if(currentCell.prev==null){
-            // Create new cell where one does not exist:
-            currentCell.prev = createCell();
-            currentCell.prev.next = currentCell;
+    //  Getter for current cell pointer
+    public Cell getCurrentCell() {
+        return currentCell;
+    }
+
+    // Moving current cell to one position left
+    public void moveLeft() {
+        if(currentCell.prev == null) {
+            Cell newCell = new Cell();
+            newCell.content = ' ';
+            newCell.prev = null;
+            newCell.next = currentCell;
+            currentCell.prev = newCell;
         }
-        // Update current cell to the one on left :
         currentCell = currentCell.prev;
     }
 
-
-    public void moveRight(){
-        // Moves cell location 1 cell right of current along tape :
-        if(currentCell.next==null){
-            // Create new cell where one does not exist:
-            currentCell.next = createCell();
-            currentCell.next.prev = currentCell;
+    // Moving current cell to one position right
+    public void moveRight() {
+        if (currentCell.next == null) {
+            Cell newCell = new Cell();
+            newCell.content = ' ';
+            newCell.next = null;
+            newCell.prev = currentCell;
+            currentCell.next = newCell;
         }
-        // Update current cell to the one on right :
         currentCell = currentCell.next;
     }
 
-
-
-
+    // Returning characters from all cells
+    public String getTapeContents() {
+        Cell pointer = currentCell;
+        while(pointer.prev != null)
+            pointer = pointer.prev;
+        String strContent = " ";
+        while (pointer != null) {
+            strContent += pointer.next;
+        }
+        strContent = strContent.trim();
+        return strContent;
+    }
 }
