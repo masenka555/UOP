@@ -1,9 +1,11 @@
-package tape;
+package main.tape;
 
 // A test program for the Tape class that calls most of the methods in that class.
 //
 // The output from this program should be:  Tape Conents:  Hello World
 //                                          Final position at the W
+
+import main.tape.Tape;
 
 public class TestTape {
 	

@@ -1,4 +1,4 @@
-package tape;
+package main.tape;
 
 
 // A test program for the TuringMachine class.  It creates three machines

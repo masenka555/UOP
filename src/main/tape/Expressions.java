@@ -1,4 +1,4 @@
-package tape;
+package main.tape;
 
 /**
  * A class for experimenting with expression trees.  This class includes 

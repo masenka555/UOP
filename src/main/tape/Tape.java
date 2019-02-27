@@ -1,4 +1,4 @@
-package tape;
+package main.tape;
 public class Tape {
 
     public static void main(String[] args){

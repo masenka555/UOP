@@ -1,4 +1,4 @@
-package tape;
+package main.tape;
 
 
 // A test program for the Tape class that creates a window containing
